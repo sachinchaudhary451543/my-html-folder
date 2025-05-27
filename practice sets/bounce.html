@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bounce animation</title>
+</head>
+<style>
+    .name{
+        font-size: 50px;
+        text-shadow: 2px 3px 4px blue;
+    }
+    .container{
+        color: aqua;
+        background-color: blanchedalmond;
+        height: 500px;
+        width: 500px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+    }
+    .ball{
+        background-color: blue;
+        height: 100px;
+        width: 100px;
+        border-radius: 50%;
+        text-align: center;
+        align-content: center;
+        position: absolute;
+        bottom: 0;
+        animation: football-bounce 3s  ease-in-out infinite,ball-color-fade 3s ease-in-out infinite;
+
+    }
+
+     /* Shadow effect under the ball */
+     .shadow {
+            position: absolute;
+            bottom: 0;
+            height: 10px;
+            width: 50px;
+            background-color: rgba(0, 0, 0, 0.2); /* Faint shadow */
+            border-radius: 50%;
+            transform: scaleX(1);
+            animation: shadow-scale 3s ease-in-out infinite;
+        }
+        
+ /* Keyframes for natural football-like bouncing */
+ @keyframes football-bounce {
+            0% {
+                transform: translateX(0) translateY(0); /* Start at the bottom-left */
+            }
+            25% {
+                transform: translateX(100px) translateY(-200px); /* Bounce upwards and move right */
+            }
+            50% {
+                transform: translateX(200px) translateY(0); /* Hit the ground further right */
+            }
+            75% {
+                transform: translateX(300px) translateY(-150px); /* Smaller bounce upward */
+            }
+            100% {
+                transform: translateX(400px) translateY(0); /* End at the bottom-right */
+            }
+        }
+
+        /*  Keyframes for the shadow scaling */
+        @keyframes shadow-scale {
+            0%, 100% {
+                transform: scaleX(1); /* Normal shadow */
+                opacity: 0.5; /* Shadow is visible at the bottom */
+            }
+            25%, 75% {
+                transform: scaleX(0.5); /* Shadow shrinks as the ball goes up */
+                opacity: 0.1; /* Shadow fades when the ball is higher */
+            }
+            50% {
+                transform: scaleX(0.2); /* Smallest shadow at the top of the bounce */
+                opacity: 0.05; /* Shadow is almost invisible */
+            }
+        }
+
+
+           /* Keyframes for color fading */
+           @keyframes ball-color-fade {
+            0%, 100% {
+                background-color: rgb(10, 10, 46); /* Original color */
+            }
+            25% {
+                background-color: green; /* Change to green as it moves up */
+            }
+            50% {
+                background-color: red; /* Change to red at the top of the bounce */
+            }
+            75% {
+                background-color: purple; /* Change to purple as it moves down */
+            }
+        }
+</style>
+<body>
+    <div class="name">this is sachin chaudahry</div>
+  <div class="container">
+    <div class="ball">ball</div>
+    <div class="shadow"></div>
+  </div>
+</body>
+</html>

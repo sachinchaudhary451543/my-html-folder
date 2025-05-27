@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indira Gandhi National Open University</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #003366;
+            color: white;
+            padding: 8px 0;
+            text-align: center;
+        }
+        .logo_header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        .logo_header img {
+            height: 80px;
+        }
+        .header_content h1, .header_content h2 {
+            margin: 0;
+        }
+        .header_content h1 {
+            font-size: 24px;
+        }
+        .header_content h2 {
+            font-size: 18px;
+        }
+        main {
+            padding: 20px;
+        }
+        .login_box, .details_box {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            margin: 0 auto;
+
+        }
+        .login_box h2, .details_box h2 {
+            margin-top: 0;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #003366;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:disabled {
+            background-color: #ccc;
+        }
+        footer {
+            text-align: center;
+            background-color: #003366;
+            color: white;
+            position: relative;
+            height: 100px;
+            width: 100%;
+            bottom: 0;
+        }
+        footer a {
+            color: rgb(255, 255, 255);
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+            color: rgb(51, 13, 221);
+        }
+        @media (max-width: 600px) {
+            .logo_header {
+                flex-direction: column;
+                align-items: center;
+            }
+            .naac_logo {
+                margin-top: 10px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo_header">
+            <div id="logo_container">
+                <img src="ignou.png" alt="IGNOU Logo" class="transparent_logo">
+            </div>
+            <div class="header_content">
+                <h1>Indira Gandhi National Open University</h1>
+                <h2>Grade Card / Marksheet</h2>
+            </div>
+            <div class="naac_logo">
+                <img src="naac.PNG" alt="NAAC Logo" class="transparent_logo">
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="login_box" id="loginBox">
+            <h2>Login</h2>
+            <form id="loginForm">
+                <label for="courses">Choose your course:</label>
+                <select id="courses" name="courses">
+                    <option value="">Choose your course</option>
+                    <option value="bca">BCA</option>
+                    <option value="mca">MCA</option>
+                    <option value="mba">MBA</option>
+                    <option value="ba">BA</option>
+                    <option value="ma">MA</option>
+                    <option value="bcom">B.Com</option>
+                    <option value="mcom">M.Com</option>
+                    <option value="bsc">B.Sc</option>
+                    <option value="msc">M.Sc</option>
+                    <option value="bba">BBA</option>
+                    <option value="btech">B.Tech</option>
+                    <option value="mtech">M.Tech</option>
+                </select>
+
+                <label for="enrollment">Enrollment Number:</label>
+                <input type="text" id="enrollment" name="enrollment" placeholder="Enter your enrollment number" required>
+
+                <button type="submit">Login</button>
+            </form>
+        </div>
+
+        <div class="details_box" id="detailsBox" style="display: none;">
+            <h2>Welcome! Student</h2>
+            <p id="welcomeMessage"></p>
+            <p id="courseDetails"></p>
+            <p id="enrollmentDetails"></p>
+            <button id="homeButton">Home</button>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; Indira Gandhi National Open University <br>(This is only a college project not main website) </p>
+        <p>Developed by: <a href="https://sachindeveloper.netlify.app/" target="_blank">Sachin (SP.Tech.World)</a></p>
+    </footer>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var course = document.getElementById('courses').value;
+            var enrollment = document.getElementById('enrollment').value;
+
+            if (course === "") {
+                alert("Please choose a course.");
+                return;
+            }
+
+            if (enrollment.length < 8) {
+                alert("Enrollment number must be at least 8 digits long.");
+                return;
+            }
+
+            document.getElementById('loginBox').style.display = 'none';
+            document.getElementById('detailsBox').style.display = 'block';
+            document.getElementById('welcomeMessage').innerText = "Welcome to IGNOU!";
+            document.getElementById('courseDetails').innerText = "Course: " + course.toUpperCase();
+            document.getElementById('enrollmentDetails').innerText = "Enrollment Number: " + enrollment;
+
+            // Change the login button text to "Logged In" and disable it
+            var loginButton = document.querySelector('button[type="submit"]');
+            loginButton.innerText = "Logged In";
+            loginButton.disabled = true;
+        });
+
+        document.getElementById('homeButton').addEventListener('click', function() {
+            document.getElementById('detailsBox').style.display = 'none';
+            document.getElementById('loginBox').style.display = 'block';
+            var loginButton = document.querySelector('button[type="submit"]');
+            loginButton.innerText = "Login";
+            loginButton.disabled = false;
+            document.getElementById('loginForm').reset();
+        });
+    </script>
+</body>
+</html>

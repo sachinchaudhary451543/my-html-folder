@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indira Gandhi National Open University</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 3px 0 3px;
+        }
+
+        td, th {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        h1 {
+            color: white;
+            font-style: italic;
+            background-color: rgb(96, 125, 255);
+            text-align: center;
+        }
+
+        tr {
+            color: rgb(13, 13, 14);
+        }
+
+        caption {
+            font-size: larger;
+            font-family: fantasy;
+            background-color: cornflowerblue;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            margin: 20px auto;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+        }
+
+        form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        form input {
+            width: 95%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        form button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        form button:hover {
+            background-color: #218838;
+        }
+
+        footer {
+            text-align: center;
+            padding: 5px;
+            margin-top: 20px;
+            background-color: #333;
+            color: white;
+            width: 100%;
+            bottom: 0;
+        }
+
+        footer a {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        footer a:hover {
+            color: #4829f3;
+        }
+
+        .logo {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgb(96, 125, 255);
+            padding: 10px;
+        }
+
+        .ignou-logo img {
+            width: 80px;
+            height: 30px;
+        }
+
+        .naac img {
+            width: 100px;
+            height: 100px;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-bottom: 5px;
+        }
+
+        .buttons button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .buttons button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 480px) {
+            .logo {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            form {
+                width: 95%;
+                margin: 10px auto;
+                padding: 15px;
+            }
+
+            table, td {
+                width: 100%;
+                display: block;
+            }
+
+            td {
+                text-align: left;
+                padding: 8px;
+            }
+
+            footer {
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="logo">
+        <div class="ignou-logo">
+            <img src="ignou.png" alt="ignou logo">
+        </div>
+        <h1>
+            इंदिरा गांधी राष्ट्रीय मुक्त विश्वविद्यालय<br>
+            Indira Gandhi National Open University<br>
+            (केंद्रीय विश्वविद्यालय / A Central University)
+        </h1>
+        <div class="naac">
+            <img src="naac.PNG" alt="naac logo">
+        </div>
+    </div>
+
+    <form id="admitCardForm">
+        <h2>हाल टिकट/ प्रवेश पत्र-Hall Ticket/Admit Card</h2>
+        <h3>दिसंबर-2024, सत्रांत परीक्षा (टीईई) / DEC-2024, Term End Examination</h3>
+        <p>निम्नलिखित दर्ज करें/ Enter the following</p>
+        <label for="enrollmentNumber">Enrollment Number:</label>
+        <input type="text" id="enrollmentNumber" name="enrollmentNumber" placeholder="Enter Enrollment Number" required>
+
+        <label for="programmeCode">Programme Code:</label>
+        <input type="text" id="programmeCode" name="programmeCode" placeholder="Enter Programme Code" required>
+
+        <label for="programmeName">Programme Name:</label>
+        <input type="text" id="programmeName" name="programmeName" placeholder="Enter Programme Name" required>
+
+        <label for="studentName">Name of the Student:</label>
+        <input type="text" id="studentName" name="studentName" placeholder="Enter Student Name" required>
+
+        <label for="examCentreCode">Exam Centre Code:</label>
+        <input type="text" id="examCentreCode" name="examCentreCode" placeholder="Enter Exam Centre Code" required>
+
+        <label for="examMode">Mode of Exam:</label>
+        <input type="text" id="examMode" name="examMode" placeholder="Enter Mode of Exam" required>
+
+        <label for="examCentreAddress">Exam Centre Address:</label>
+        <input type="text" id="examCentreAddress" name="examCentreAddress" placeholder="Enter Exam Centre Address" required>
+
+        <button type="button" onclick="generateAdmitCard()">Download Admit Card</button>
+    </form>
+
+    <div id="admitCard" style="display:none;">
+        <div class="buttons">
+            <button type="button" onclick="goBack()"><i class="fas fa-arrow-left"></i> Go Back</button>
+            <button type="button" onclick="printAdmitCard()"><i class="fas fa-print"></i> Print Admit Card</button>
+        </div>
+        <table border="5">
+            <caption>December-2024, Term End Examination (TEE)</caption>
+            <tr>
+                <th colspan="2"><strong>HALL TICKET/ADMIT CARD</strong></th>
+                <td rowspan="6"><img src="dummy image for profile.webp" alt="YOUR PHOTO HERE" height="150px" width="100%"> <span id="studentNameDisplay"></span></td>
+            </tr>
+            <tr>
+                <td>ENROLLMENT NUMBER:</td>
+                <td><strong id="enrollmentNumberDisplay"></strong></td>
+            </tr>
+            <tr>
+                <td>PROGRAMME CODE:</td>
+                <td id="programmeCodeDisplay"></td>
+            </tr>
+            <tr>
+                <td>PROGRAMME NAME:</td>
+                <td id="programmeNameDisplay"></td>
+            </tr>
+            <tr>
+                <td>NAME OF THE STUDENT:</td>
+                <td id="studentNameDisplay2"></td>
+            </tr>
+            <tr>
+                <td>EXAM CENTRE CODE:</td>
+                <td id="examCentreCodeDisplay"></td>
+            </tr>
+            <tr style="text-align: left">
+                <td><strong>MODE OF EXAM:- <br> COMPUTER BASED (ONLINE) OR <br> OFFLINE</strong></td>
+                <td colspan="2"><strong id="examModeDisplay"></strong></td>
+            </tr>
+            <tr style="text-align: left;">
+                <td colspan="2">EXAM centre add: <br><span id="examCentreAddressDisplay"></span></td>
+                <td><img src="" alt="signature_Here" height="100px" width="100px"> signature_</td>
+            </tr>
+        </table>
+        <table border="1" id="datesheetTable" style="margin: 10px 3px 70px 3px;">
+            <caption>Exam Datesheet</caption>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Day</th>
+                    <th>Exam Name</th>
+                    <th>Timing</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Datesheet will be generated here -->
+            </tbody>
+        </table>
+    </div>
+
+    <footer>
+        Contact us at our regional center/head office Delhi. 
+        <br>
+        <a href="https://www.ignou.ac.in/">www.ignou.ac.in</a>
+        <p><br>Created by: <a href="https://sachindeveloper.netlify.app/">Sachin (SP.Tech.World)</a></p>
+    </footer>
+
+    <script>
+        function generateAdmitCard() {
+            const enrollmentNumber = document.getElementById('enrollmentNumber').value;
+            const studentName = document.getElementById('studentName').value;
+
+            if (enrollmentNumber.length < 10) {
+                alert('Enrollment number must be at least 10 digits.');
+                return;
+            }
+
+            if (studentName.length < 4) {
+                alert('Name must be at least 4 letters.');
+                return;
+            }
+
+            document.getElementById('studentNameDisplay').innerText = studentName;
+            document.getElementById('enrollmentNumberDisplay').innerText = enrollmentNumber;
+            document.getElementById('programmeCodeDisplay').innerText = document.getElementById('programmeCode').value;
+            document.getElementById('programmeNameDisplay').innerText = document.getElementById('programmeName').value;
+            document.getElementById('studentNameDisplay2').innerText = studentName;
+            document.getElementById('examCentreCodeDisplay').innerText = document.getElementById('examCentreCode').value;
+            document.getElementById('examModeDisplay').innerText = document.getElementById('examMode').value;
+            document.getElementById('examCentreAddressDisplay').innerText = document.getElementById('examCentreAddress').value;
+
+            generateDatesheet();
+
+            document.getElementById('admitCardForm').style.display = 'none';
+            document.getElementById('admitCard').style.display = 'block';
+        }
+
+        function goBack() {
+            document.getElementById('admitCardForm').reset();
+            document.getElementById('admitCardForm').style.display = 'block';
+            document.getElementById('admitCard').style.display = 'none';
+        }
+
+        function printAdmitCard() {
+            const printContents = document.getElementById('admitCard').innerHTML;
+            const originalContents = document.body.innerHTML;
+
+            document.body.innerHTML = printContents;
+            window.print();
+            document.body.innerHTML = originalContents;
+            location.reload();
+        }
+
+        function generateDatesheet() {
+            const examNames = [
+                'MCS 201', 'MCS 211', 'MCS 218', 'MCS 219', 'MCS 220',
+                'MCS 223', 'MCS 225', 'MCS 226', 'MCS 221', 'MCS 225'
+            ];
+            const timings = ['Morning', 'Evening'];
+            const datesheetTable = document.getElementById('datesheetTable').getElementsByTagName('tbody')[0];
+
+            // Clear existing rows
+            datesheetTable.innerHTML = '';
+
+            for (let i = 0; i < 5; i++) {
+                const date = new Date();
+                date.setDate(date.getDate() + (i * 2)); // Future dates
+
+                const day = date.toLocaleString('en-US', { weekday: 'long' });
+                const examName = examNames[Math.floor(Math.random() * examNames.length)];
+                const timing = timings[Math.floor(Math.random() * timings.length)];
+
+                const row = datesheetTable.insertRow();
+                row.insertCell(0).innerText = date.toLocaleDateString();
+                row.insertCell(1).innerText = day;
+                row.insertCell(2).innerText = examName;
+                row.insertCell(3).innerText = timing;
+            }
+        }
+    </script>
+</body>
+</html>

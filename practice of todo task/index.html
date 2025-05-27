@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ToDo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-image: url(''); /* Replace with your image */
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      color: #fff; /* Adjust text color for better contrast */
+    }
+
+    #main-heading {
+      text-align: center;
+      margin-bottom: 20px;
+      background-color: #a2f0c0;
+      border-radius: 8px;
+      padding: 10px;
+      color: rgb(45 51 51);
+      box-shadow: 0 2px 4px rgba(44, 107, 54, 0.1);
+    }
+
+    .grid-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 20px;
+      justify-content: center;
+    }
+
+    #todo-input, #todo-date {
+      flex: 1;
+      padding: 8px;
+      font-size: 16px;
+      margin: 10px 10px;
+      border-radius: 15px;
+      background-color: rgb(141, 180, 214);
+      border: none;
+      text-align: center;
+      max-width: 300px;
+    }
+
+    .btn-todo {
+      padding: 8px 15px;
+      background-color: rgb(242 91 8);
+      color: rgb(218, 215, 215);
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      border-radius: 15px;
+      margin: 10px;
+    }
+
+    .btn-todo:hover {
+      font-size: larger;
+      background-color: #0ca848;
+    }
+
+    .todo-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      align-items: start;
+      padding: 0 10px;
+    }
+
+    .todo-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      background-color: #e46666;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .todo-item .task {
+      flex: 1;
+    }
+
+    .todo-item .date {
+      flex: 1;
+      text-align: center;
+    }
+
+    .todo-item button {
+      margin-left: 10px;
+      padding: 5px 10px;
+      background-color: #dc3545;
+      color: rgb(241, 243, 242);
+      border: none;
+      cursor: pointer;
+      font-size: 14px;
+      border-radius: 15px;
+      flex-shrink: 0; /* Prevent the button from shrinking */
+      width: 80px; /* Fixed width */
+      height: 35px; /* Fixed height */
+      text-align: center;
+    }
+
+    .todo-item button:hover {
+      background-color: #a71d2a;
+      font-size: larger;
+    }
+
+    /* Media queries for responsiveness */
+    @media (max-width: 768px) {
+      .todo-container {
+        grid-template-columns: 1fr;
+      }
+
+      .btn-todo {
+        margin-right: 0;
+      }
+    }
+
+    @media (max-width: 480px) {
+      #main-heading {
+        font-size: 24px;
+      }
+      .grid-container {
+        display: flex;
+        flex-direction: row;
+      }
+
+      #todo-input, #todo-date {
+        font-size: 14px;
+        max-width: 50%;
+      }
+
+      .btn-todo {
+        font-size: 14px;
+        padding: 6px 12px;
+      }
+
+      .todo-item {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .todo-item .task, .todo-item .date {
+        text-align: left;
+      }
+
+      .todo-item button {
+        width: 100%;
+        margin-top: 10px;
+      }
+    }
+    footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 10px 0;
+    }
+    footer a {
+      color: #fff;
+      text-decoration: none;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="todo-container" id="todo-container">
+    <h1 id="main-heading">ToDo App</h1>
+    <div class="grid-container">
+      <input id="todo-input" type="text" placeholder="Enter TODO here">
+      <input id="todo-date" type="date">
+      <button class="btn-todo" onclick="addTodo();">Add</button>
+    </div>
+  </div>
+  <footer>
+    <p style="text-align: center;">Made with ❤️ by <a href="https://sachindeveloper.netlify.app/" target="_blank">Sachin (SP.Tech.World)</a></p>
+  </footer>
+
+  <script>
+    let taskCounter = 0; // Counter for tasks
+
+    function addTodo() {
+      const input = document.getElementById('todo-input');
+      const date = document.getElementById('todo-date');
+      const container = document.getElementById('todo-container');
+
+      if (input.value.trim() === '' || date.value === '') {
+        alert('Please enter a task and date!');
+        return;
+      }
+
+      taskCounter++; // Increment the task counter
+
+      const item = document.createElement('div');
+      item.classList.add('todo-item');
+      item.innerHTML = `
+        <div class="task"><strong>${taskCounter}. ${input.value}</strong></div>
+        <div class="date">${date.value}</div>
+        <button onclick="deleteTodo(this);">Delete</button>
+      `;
+      container.appendChild(item);
+
+      // Clear the input fields
+      input.value = '';
+      date.value = '';
+    }
+
+    function deleteTodo(button) {
+      const item = button.parentElement;
+      item.remove();
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+/* Base styles */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column; /* Arrange children in a column */
+    justify-content: flex-start;
+    align-items: center;
+    height: 90vh;
+    margin: 0;
+    padding-top: 20px;
+}
+
+#Calculator {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    flex-grow: 1; /* Allow the calculator to grow and take available space */
+}
+
+#display-container {
+    position: relative;
+}
+
+#display-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+#display {
+    width: 100%;
+    padding: 10px;
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box; /* Ensure padding is included in the width */
+    text-align: right; /* Align text to the right */
+    position: relative;
+}
+
+#blinker {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-70%);
+    font-size: 1.5em;
+    color: black;
+    animation: blink 1s step-start infinite;
+    z-index: 1;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+.button-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Change to 3 columns */
+    gap: 10px;
+}
+
+.button {
+    padding: 20px;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive styles */
+@media (max-width: 600px) {
+    #Calculator {
+        padding: 10px;
+    }
+
+    .button {
+        padding: 15px;
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 400px) {
+    .button {
+        padding: 10px;
+        font-size: 0.8em;
+    }
+}
+footer {
+    text-align: center;
+    margin-top: 20px;
+    color: #777;
+    width: 100%; /* Ensure footer takes full width */
+}
+footer p {
+    margin: 0;
+}
+
+footer a {
+    color: #007bff;
+    text-decoration: none;
+}
